@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws'
+import App from './components/App'
 
 const wsClient = new SubscriptionClient('ws://localhost:3010/subscriptions', {
   reconnect: true
@@ -21,8 +22,9 @@ const client = new ApolloClient({
   networkInterface: networkInterfaceWithSubscriptions
 })
 
-render((
-  <ApolloProvider client={client}>
+render(
+  <ApolloProvider client={client} >
     <App />
-  </ApolloProvider>
-), document.getElementById('app'))
+  </ApolloProvider>,
+  document.getElementById('app')
+)
